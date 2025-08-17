@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 修改点 1: 网页标题 -->
+    <title>张伟的个人主页</title>
+    <style>
+        /* --- 全局样式与设计 --- */
+        :root {
+            /* 配色方案 (可在此处轻松修改) */
+            --bg-color: #121212;         /* 深邃背景色 */
+            --card-color: #1E1E1E;       /* 卡片/区域背景色 */
+            --primary-color: #007BFF;   /* 主题色/链接色 (亮蓝色) */
+            --text-color: #E0E0E0;       /* 主要文字颜色 (浅灰色) */
+            --secondary-text-color: #B0B0B0; /* 次要文字颜色 (灰色) */
+            --border-color: #333333;       /* 边框颜色 */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth; /* 实现平滑滚动 */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; }
+        
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #4da3ff;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+
+        /* --- 导航栏 --- */
+        header {
+            background-color: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        /* --- 介绍区域 (Hero) --- */
+        #hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            min-height: 80vh;
+        }
+
+        .hero-text {
+            flex: 2;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary-text-color);
+            margin-top: 10px;
+        }
+
+        .hero-img {
+            flex: 1;
+            text-align: right;
+        }
+
+        .hero-img img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--border-color);
+        }
+
+        /* --- 项目展示区域 --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background-color: var(--card-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.1);
+        }
+
+        .project-card h3 {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+        }
+
+        .project-card p {
+            color: var(--secondary-text-color);
+            font-size: 0.95rem;
+        }
+
+        /* --- 联系方式区域 --- */
+        .contact-links {
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .contact-links a {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* --- 页脚 --- */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid var(--border-color);
+            color: var(--secondary-text-color);
+            font-size: 0.9rem;
+        }
+
+        /* --- 响应式设计 (针对手机等小屏幕) --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.8rem; }
+            
+            #hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                min-height: auto;
+            }
+
+            .hero-text {
+                margin-top: 30px;
+            }
+
+            .nav-links {
+                display: none; /* 在手机上可以简化，或之后添加汉堡菜单 */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav>
+                <!-- 修改点 2: 你的名字/LOGO -->
+                <a href="#" class="logo">张伟</a>
+                <ul class="nav-links">
+                    <li><a href="#about">关于我</a></li>
+                    <li><a href="#projects">我的项目</a></li>
+                    <li><a href="#contact">联系我</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- 介绍信息 -->
+        <section id="hero">
+            <div class="hero-text">
+                <!-- 修改点 3: 你的名字和大标题 -->
+                <h1>你好，我是张伟</h1>
+                <!-- 修改点 4: 你的简介/Slogan -->
+                <p class="subtitle">一名前端开发者 & 终身学习者<br>热衷于用代码构建简洁而美好的数字世界。</p>
+            </div>
+            <div class="hero-img">
+                <!-- 修改点 5: 你的头像照片 -->
+                <!-- 建议图片为正方形，尺寸200x200像素或更大 -->
+                <img src="https://via.placeholder.com/200" alt="个人头像">
+            </div>
+        </section>
+
+        <!-- 关于我 -->
+        <section id="about">
+            <h2>关于我</h2>
+            <!-- 修改点 6: "关于我"的具体介绍 -->
+            <p>
+                我拥有超过5年的Web开发经验，专注于使用现代前端技术栈（如React、Vue）来构建用户友好的交互界面。我对技术充满热情，喜欢探索新的工具和理念来提升开发效率和产品质量。
+            </p>
+            <p style="margin-top: 15px;">
+                工作之余，我喜欢阅读、摄影和爬山。我相信持续学习和保持好奇心是成长的关键。
+            </p>
+        </section>
+
+        <!-- 我的项目 -->
+        <section id="projects">
+            <h2>我的项目</h2>
+            <div class="project-grid">
+                <!-- 修改点 7: 在这里添加或修改你的项目 -->
+                <!-- 项目 1 -->
+                <div class="project-card">
+                    <h3>个人博客系统</h3>
+                    <p>一个基于 Node.js 和 Markdown 的静态博客生成器，实现了快速部署和极简的写作体验。</p>
+                </div>
+                <!-- 项目 2 -->
+                <div class="project-card">
+                    <h3>在线任务管理工具</h3>
+                    <p>使用 Vue.js 和 Firebase 开发的实时协作任务板，帮助团队有效管理项目进度。</p>
+                </div>
+                <!-- 项目 3 -->
+                <div class="project-card">
+                    <h3>数据可视化仪表盘</h3>
+                    <p>利用 D3.js 和 React 展示复杂数据的交互式图表库，提供多种可定制的图表类型。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系我 -->
+        <section id="contact">
+            <h2>联系我</h2>
+            <p>欢迎通过以下方式与我交流，或者只是打个招呼！</p>
+            <div class="contact-links">
+                 <!-- 修改点 8: 修改你的社交链接 -->
+                <a href="mailto:your.email@example.com" target="_blank">邮箱</a>
+                <a href="https://github.com/your-username" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/your-username" target="_blank">领英(LinkedIn)</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <!-- 修改点 9: 修改年份和名字 -->
+            <p>&copy; 2024 张伟. 保留所有权利。</p>
+        </div>
+    </footer>
+
+</body>
+</html>
